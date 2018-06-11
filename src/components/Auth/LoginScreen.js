@@ -17,7 +17,7 @@ export default class LoginScreen extends Component {
     }
 
     btnGoToForgotPassword = () => {
-        this.props.navigation.navigate('ForgotPasswordScreen')
+        this.props.navigation.navigate('ForgotPasswordScreen');
     }
 
     render() {
