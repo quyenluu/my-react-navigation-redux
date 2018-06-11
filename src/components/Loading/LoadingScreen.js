@@ -16,7 +16,7 @@ class LoadingScreen extends Component {
 
     render() {
         return (
-            <View style={{ flex: 1, justifyContent: 'content', alignItems: 'content' }}>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <ActivityIndicator />
                 <StatusBar hidden={ true } />
             </View>
