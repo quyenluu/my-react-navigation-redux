@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { createStackNavigator, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
+import { initializeListeners } from 'react-navigation-redux-helpers';
 
 import LoadingScreen  from '../components/Loading/LoadingScreen';
 import { AuthStack } from '../components/Auth/AuthStack';
 import { MainStack } from '../components/Main/MainStack';
-import { addListener } from '../utils/redux';
+import { addListener, navigationPropConstructor } from '../utils/redux';
 
 export const AppNavigator = createStackNavigator (
     {
@@ -20,11 +21,17 @@ export const AppNavigator = createStackNavigator (
 
 
 class AppWithNavigationState extends Component {
+    componentDidMount() {
+        initializeListeners('root', this.props.nav);
+    }
+
     render() {
         const { dispatch, nav } = this.props;
+        //const navigation = { dispatch, state: nav, addListener };
+        const navigation = navigationPropConstructor(dispatch, nav);
         return (
             <AppNavigator 
-                navigation={{ dispatch, state: nav, addListener }}
+                navigation={navigation}
             />
         );
     }
