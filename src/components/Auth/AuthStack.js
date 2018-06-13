@@ -7,8 +7,7 @@ import ProfileScreen from './ProfileScreen';
 export const AuthStack = createStackNavigator(
     {
         LoginScreen: { screen: LoginScreen },
-        ForgotPasswordScreen: { screen: ForgotPasswordScreen },
-        ProfileScreen: { screen: ProfileScreen }
+        ForgotPasswordScreen: { screen: ForgotPasswordScreen }
     },
     {
         initialRouteName: 'LoginScreen'

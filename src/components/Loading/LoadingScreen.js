@@ -10,7 +10,7 @@ class LoadingScreen extends Component {
 
     _bootstrapAsync = async () => {
         const userToken = await AsyncStorage.getItem('userToken');
-
+        console.log('userToken: ' + userToken);
         this.props.navigation.navigate(userToken ? 'MainStack' : 'AuthStack');
     }
 

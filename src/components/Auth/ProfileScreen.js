@@ -1,12 +1,38 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import { connect } from 'react-redux';
 
-export default class ProfileScreen extends Component {
+import AuthAPI from '../../api/AuthAPI';
+
+class ProfileScreen extends Component {
+    
+    btnLogout = async() => {
+        try {
+            await AuthAPI.logout();
+            this.props.navigation.navigate('LoginScreen');
+        } catch (error) {
+            alert('CANNOT LOGOUT');
+        }
+    }
+
     render() {
+        console.log(this.props.auth);
         return (
             <View style={{ backgroundColor: 'pink', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                 <Text>Profile Screen</Text>
+                <Text>Hello</Text>
+                <Text>{this.props.auth.dataUser.fullName}</Text>
+                <Button 
+                    title='Logout'
+                    onPress={this.btnLogout}
+                />
             </View>
         );
     }
 }
+
+mapStateToProps = (state) => ({
+    auth: state.auth
+})
+
+export default connect(mapStateToProps)(ProfileScreen);
